@@ -1,0 +1,62 @@
+/* * {
+	vertical-align: baseline;
+	border: 0 none;
+	padding: 0;
+	margin: 0;
+} */
+
+body {
+    background: rgb(53, 53, 53);
+    color: white;
+    padding: 15px;
+    font-family: 'Trebuchet MS';
+    font-size: 22px;
+}
+
+header {
+    margin: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    max-width: 60%;
+}
+
+label {
+    color: white;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+input {
+    border-radius: 8px;
+}
+
+#search-btn {
+    height: 40px;
+    width: 56px;
+    background: rgb(0, 132, 255);
+    border: solid 2px rgb(240, 240, 240);
+    border-radius: 8px;
+    margin: 0;
+    position: relative; 
+    transition: 0.2s ease-in-out;
+}
+
+#search-btn:hover {
+    background: rgb(48, 155, 255);
+}
+
+#GameBops {
+    font-size: 46px;
+    letter-spacing: 5px;
+    margin: 10px;
+}
