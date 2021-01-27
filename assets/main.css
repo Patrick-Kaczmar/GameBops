@@ -24,7 +24,7 @@ form {
     justify-content: center;
     padding: 60px;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 25px;
     margin-left: 20%;
     margin-right: 20%;
     max-width: 60%;
@@ -37,16 +37,19 @@ label {
 }
 
 input {
-    border-radius: 8px;
+    border-radius: 8px !important;
 }
 
+h5 {
+    letter-spacing: 1px;
+}
 #search-btn {
     height: 40px;
     width: 56px;
     background: rgb(0, 132, 255);
     border: solid 2px rgb(240, 240, 240);
     border-radius: 8px;
-    margin: 0;
+    margin-left: -6px;
     position: relative; 
     transition: 0.2s ease-in-out;
 }
