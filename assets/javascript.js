@@ -8,10 +8,23 @@ const settings = {
         "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
         "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
+
 };
 
 $.ajax(settings).done(function (response) {
     console.log(response);
+    for(var i=0;i<response.length;i++){
+
+        var title = response[i].title;
+        console.log(title);
+
+        var thumbnail = response[i].thumbnail;
+        console.log(thumbnail);
+
+        var gameUrl = response[i].game_url;
+        console.log(gameUrl);
+    }
+
 });
 
 var userInput = "jebaited"
