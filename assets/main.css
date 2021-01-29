@@ -26,9 +26,9 @@ form {
     border: 2px solid rgb(200, 200, 200);
     box-shadow: 2px 2px 20px rgb(175, 175, 175);
     border-radius: 20px;
-    margin-left: 26%;
-    margin-right: 26%;
-    max-width: 48%;
+    margin-left: 25%;
+    margin-right: 25%;
+    max-width: 50%;
 }
 
 label {
@@ -42,6 +42,13 @@ input {
     border-radius: 8px !important;
 }
 
+.game-display {
+    border: solid white 1px;
+}
+
+.youtube-display {
+    border: solid white 1px;
+}
 #GameBops {
     font-size: 46px;
     letter-spacing: 5px;
