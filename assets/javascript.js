@@ -1,4 +1,3 @@
-menaBranch
 const settings = {
     "async": true,
     "crossDomain": true,
@@ -8,6 +7,7 @@ const settings = {
         "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
         "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
+
 };
 
 $.ajax(settings).done(function (response) {
