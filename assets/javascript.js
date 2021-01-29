@@ -12,6 +12,18 @@ const settings = {
 
 $.ajax(settings).done(function (response) {
     console.log(response);
+    for(var i=0;i<response.length;i++){
+
+        var title = response[i].title;
+        console.log(title);
+
+        var thumbnail = response[i].thumbnail;
+        console.log(thumbnail);
+
+        var gameUrl = response[i].game_url;
+        console.log(gameUrl);
+    }
+
 });
 
 var userInput = "jebaited"
