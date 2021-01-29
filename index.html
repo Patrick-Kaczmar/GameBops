@@ -8,8 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/main.css">
 </head>
 
@@ -37,25 +39,29 @@
 <script>
 
     var searchBtn = $("#search-btn")
-    var apiKey = "AIzaSyDIdlknMUSqeJZ_ukyOVh2DqTdMzFL0Y9s"
+    var userInput = $("#input")
 
-    var ajaxSearch = function(event) {
+    function ajaxSearch(event) {
         event.preventDefault()
-        console.log("buttonclicked")
-        
-        var userInput = $("#input").val()
-        var queryURL = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + userInput + "&key=" + apiKey
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response){
-            console.log(queryURL)
-            console.log(response)
-        })
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val(),
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "b35fd7d145mshb4adf51ded8770dp1c0953jsn373558f355ca",
+                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+            }
+        }
+        $.ajax(settings).done(function (response) {
+            console.log(userInput)
+            console.log(response);
+        });
     }
 
-    $("#search-btn").on("click", ajaxSearch)
-
+    searchBtn.on("click", ajaxSearch)
+    
 </script>
+
 </html>
