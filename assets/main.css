@@ -1,10 +1,3 @@
-/* * {
-	vertical-align: baseline;
-	border: 0 none;
-	padding: 0;
-	margin: 0;
-} */
-
 body {
     background: rgb(53, 53, 53);
     color: white;
@@ -19,25 +12,41 @@ header {
     text-align: center;
 }
 
+h5 {
+    letter-spacing: 3px;
+}
+
 form {
     display: flex;
     justify-content: center;
-    padding: 60px;
-    border: 1px solid white;
-    border-radius: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    max-width: 60%;
+    background-image: url("images/milky-way-dark.jpg");
+    background-repeat: inherit; 
+    background-size: auto;
+    padding: 6% 8%;
+    border: 2px solid rgb(200, 200, 200);
+    box-shadow: 2px 2px 20px rgb(175, 175, 175);
+    border-radius: 20px;
+    margin-left: 26%;
+    margin-right: 26%;
+    max-width: 48%;
 }
 
 label {
     color: white;
-    font-size: 18px;
-    margin-right: 8px;
-}
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 4px;
+} 
 
 input {
-    border-radius: 8px;
+    border-radius: 8px !important;
+}
+
+#GameBops {
+    font-size: 46px;
+    letter-spacing: 5px;
+    margin: 10px;
+    text-shadow: 1px 1px 6px rgb(185, 185, 185);
 }
 
 #search-btn {
@@ -46,17 +55,11 @@ input {
     background: rgb(0, 132, 255);
     border: solid 2px rgb(240, 240, 240);
     border-radius: 8px;
-    margin: 0;
+    margin-left: -6px;
     position: relative; 
     transition: 0.2s ease-in-out;
 }
 
 #search-btn:hover {
     background: rgb(48, 155, 255);
-}
-
-#GameBops {
-    font-size: 46px;
-    letter-spacing: 5px;
-    margin: 10px;
 }
