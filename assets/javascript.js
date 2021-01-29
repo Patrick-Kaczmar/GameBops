@@ -1,4 +1,4 @@
-menaBranch
+
 const settings = {
     "async": true,
     "crossDomain": true,
@@ -25,4 +25,5 @@ var userInput = "jebaited"
         console.log(queryURL)
         console.log(response)
     })
- main
+
+
