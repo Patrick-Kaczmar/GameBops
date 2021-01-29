@@ -25,7 +25,7 @@ $.ajax(settings).done(function (response) {
         console.log(gameUrl);
 
         var a = `
-          <div>
+          <div class="free-game-result">
             <img src="${thumbnail}" alt="${title}"/>
             <h1>${title}</h1>
             
