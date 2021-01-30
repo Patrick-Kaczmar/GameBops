@@ -27,7 +27,7 @@
     <main class="grid-x grid-padding-x align-spaced">
         <form class="cell small-6">
             <input id="input" type="text" placeholder="Search for any game...">
-            <button id="search-btn"><img src="assets/images/search-white-36x36.png"></button>
+            <button id="search-btn"><img id="search-icon" src="assets/images/search-white-36x36.png"></button>
         </form>
     </main>
     <section class="grid-x grid-padding-x align-spaced">
@@ -38,7 +38,30 @@
 
         </div>
     </section>
+    <script>
 
+        var searchBtn = $("#search-btn")
+        var apiKey = "AIzaSyDIdlknMUSqeJZ_ukyOVh2DqTdMzFL0Y9s"
+    
+        var ajaxSearch = function(event) {
+            event.preventDefault()
+            console.log("buttonclicked")
+            
+            var userInput = $("#input").val()
+            var queryURL = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + userInput + "&key=" + apiKey
+    
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response){
+                console.log(queryURL)
+                console.log(response)
+            })
+        }
+    
+        $("#search-btn").on("click", ajaxSearch)
+    
+    </script>
+    <script src="assets/javascript.js"></script>  
 </body>
-
 </html>
