@@ -14,6 +14,7 @@
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/main.css">
     <script src="assets/javascript.js" defer></script>
+
 </head>
 
 <body>
@@ -24,6 +25,16 @@
 
         <h5 id="sub-header">Find Game Soundtracks</h5>
     </header>
+        <!-- The Modal -->
+<div id="Modal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Use the SearchBar to find your favorite games and gaming soundtracks!!</p>
+    </div>
+  
+  </div>
     <main class="grid-x grid-padding-x align-spaced">
         <form class="cell small-6">
             <input id="input" type="text" placeholder="Search for any game...">
@@ -38,6 +49,32 @@
 
         </div>
     </section>
+    <script>
+
+        var searchBtn = $("#search-btn")
+        var apiKey = "AIzaSyDIdlknMUSqeJZ_ukyOVh2DqTdMzFL0Y9s"
+    
+        var ajaxSearch = function(event) {
+            event.preventDefault()
+            console.log("buttonclicked")
+            
+            var userInput = $("#input").val()
+            var queryURL = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + userInput + "&key=" + apiKey
+    
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response){
+                console.log(queryURL)
+                console.log(response)
+            })
+        }
+    
+        $("#search-btn").on("click", ajaxSearch)
+    
+    </script>
+    <script src="assets/javascript.js"></script>  
+</body>
 
 </body>
 
