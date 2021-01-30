@@ -44,6 +44,9 @@ input {
     margin: 0 5px 0 16px !important;
 }
 
+button {
+    color: white;
+}
 .game-display,
 .youtube-display {
     border: solid white 1px;
@@ -80,7 +83,7 @@ input {
 }
 
 button:hover {
-    background:rgb(185, 185, 185);
+    background: rgb(0, 132, 255);
     padding: 5px;
     border-radius: 3px;
 }
