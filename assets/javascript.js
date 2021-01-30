@@ -1,4 +1,4 @@
-var saveBtn = $('.save-btn');
+var GameSaveBtn = $('.game-save-btn');
 var favGames = [];
 var favTracks = [];
 const settings = {
@@ -36,7 +36,7 @@ $.ajax(settings).done(function (response) {
           //   var b = `
         //   <button class="save-btn">Add to Favorites</button>`
         var b = $("<button>");
-        b.addClass("save-btn");
+        b.addClass("game-save-btn");
         b.val(title);
         
         b.text("Add to Favorites");
@@ -48,7 +48,7 @@ $.ajax(settings).done(function (response) {
 });
 
 
-$(document).on("click", ".save-btn", function(event) {
+$(document).on("click", ".game-save-btn", function(event) {
     event.preventDefault();
     console.log(this);
             // creating a variable named city, assigning text value to it
@@ -99,8 +99,8 @@ var searchBtn = $("#search-btn")
                 }
             }).then(function (albumResponse){
                 console.log(albumResponse)
-                $(".youtube-display").append(`<img src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
-                var ol = $(`<ol>`)
+                $(".youtube-display").append(`<img class="music-image" src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
+                var ol = $(`<ol class="music-result">`)
                 
                 $(".youtube-display").append(ol)
 
@@ -108,7 +108,8 @@ var searchBtn = $("#search-btn")
                     var title = albumResponse.tracks.data[i].title;
                     ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${title}</li></a>`)
                     var b = $("<button>");
-                    b.addClass("save-btn");
+                    b.addClass("track-save-btn");
+                    b.addClass("music-result");
                     b.val(title);
         
                     b.text("Add to Favorites");
@@ -122,7 +123,7 @@ var searchBtn = $("#search-btn")
     }
     searchBtn.on("click", ajaxSearch)
 
-    $(document).on("click", ".save-btn", function(event) {
+    $(document).on("click", ".track-save-btn", function(event) {
         event.preventDefault();
         console.log(this);
                 // creating a variable named city, assigning text value to it

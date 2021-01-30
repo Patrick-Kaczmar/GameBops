@@ -53,31 +53,62 @@ img {
     background-color: rgb(240, 240, 240);
     opacity: 0.8;
 } */
-.save-btn {
+.game-save-btn,
+.track-save-btn {
+    padding: 5px;
     color: white;
     transition: 0.2s ease-in-out;
-    
+    /* margin-left: 20%;
+    margin-right: 40%; */
 }
 
-.save-btn:hover {
+.game-save-btn:hover,
+.track-save-btn:hover {
     background: rgb(0, 132, 255);
     padding: 5px;
     border-radius: 3px;
     
 }
 
-.game-display,
-.youtube-display {
+.game-display {
     border: solid white 1px;
     border-radius: 16px;
     text-align: center;
 }
 
+.youtube-display {
+    border: solid white 1px;
+    border-radius: 16px;
+    text-align: center;
+    padding: 15px;
+}
+
+.music-result {
+    margin: 10px;
+    text-align: center;
+    /* justify-content: space-around; */
+}
+
+ol {
+    padding-left: 20%;
+    padding-right: 20%;
+    /* border: 1px solid white; */
+}
+
+li {
+    margin-top: 10px;
+    
+    /* border: 1px solid white; */
+}
+li:hover {
+    color:rgb(48, 155, 255);
+}
 .free-game-result {
-    padding: 10px 10px 0 10px;
+    padding: 15px 10px 0 10px;
     margin: 10px;
     text-align: center;
 }
+
 
 #GameBops {
     font-size: 46px;
