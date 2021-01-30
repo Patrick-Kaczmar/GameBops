@@ -74,6 +74,13 @@
                 }
             }).then(function (albumResponse){
                 console.log(albumResponse)
+                $(".youtube-display").append(`<img src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
+                var ol = $(`<ol>`)
+                $(".youtube-display").append(ol)
+
+                for (i = 0; i < albumResponse.tracks.data.length; i++) {
+                    ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${albumResponse.tracks.data[i].title}</li></a>`)
+                }
             })
         })
     }
