@@ -1,6 +1,12 @@
 var saveBtn = $('.save-btn');
 var favGames = [];
 
+$(window).ready(function()
+{
+    // Get the modal
+var modal = document.getElementById("Modal");
+modal.style.display = "block";
+});
 const settings = {
     "async": true,
     "crossDomain": true,
@@ -92,8 +98,7 @@ var searchBtn = $("#search-btn")
                 console.log(response);
 
                 var albumURL = "https://deezerdevs-deezer.p.rapidapi.com/album/" + response.data[0].album.id
-
-                $.ajax({
+               $.ajax({
                 "url": albumURL,
                 "method": "GET",
                 "headers": {
@@ -113,3 +118,21 @@ var searchBtn = $("#search-btn")
         })
     }
     searchBtn.on("click", ajaxSearch)
+
+    // Get the modal
+var modal = document.getElementById("Modal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
