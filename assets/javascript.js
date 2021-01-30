@@ -71,6 +71,8 @@ $(document).on("click", ".save-btn", function(event) {
                         console.log(game);
                     }
 });
+var searchBtn = $("#search-btn")
+    var userInput = $("#input")
 
     function ajaxSearch(event) {
         event.preventDefault()
