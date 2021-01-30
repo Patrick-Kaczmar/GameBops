@@ -53,12 +53,13 @@ img {
     background-color: rgb(240, 240, 240);
     opacity: 0.8;
 } */
-button {
+.save-btn {
     color: white;
     transition: 0.2s ease-in-out;
+    
 }
 
-button:hover {
+.save-btn:hover {
     background: rgb(0, 132, 255);
     padding: 5px;
     border-radius: 3px;
@@ -69,10 +70,11 @@ button:hover {
 .youtube-display {
     border: solid white 1px;
     border-radius: 16px;
+    text-align: center;
 }
 
 .free-game-result {
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     margin: 10px;
     text-align: center;
 }
@@ -99,4 +101,8 @@ button:hover {
 #search-btn:hover {
     background: rgb(48, 155, 255);
     padding: 0px;
+}
+
+#search-icon {
+    border: none;
 }
