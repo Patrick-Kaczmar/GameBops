@@ -44,9 +44,27 @@ input {
     margin: 0 5px 0 16px !important;
 }
 
+img {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
+}
+
+/* img:hover {
+    background-color: rgb(240, 240, 240);
+    opacity: 0.8;
+} */
 button {
     color: white;
+    transition: 0.2s ease-in-out;
 }
+
+button:hover {
+    background: rgb(0, 132, 255);
+    padding: 5px;
+    border-radius: 3px;
+    
+}
+
 .game-display,
 .youtube-display {
     border: solid white 1px;
@@ -80,10 +98,5 @@ button {
 
 #search-btn:hover {
     background: rgb(48, 155, 255);
-}
-
-button:hover {
-    background: rgb(0, 132, 255);
-    padding: 5px;
-    border-radius: 3px;
+    padding: 0px;
 }
