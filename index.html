@@ -8,9 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/main.css">
+    <script src="assets/javascript.js" defer></script>
 </head>
 
 <body>
@@ -32,33 +35,10 @@
 
         </div>
         <div class="youtube-display cell small-5">
-    
+
         </div>
     </section>
-    <script>
 
-        var searchBtn = $("#search-btn")
-        var apiKey = "AIzaSyDIdlknMUSqeJZ_ukyOVh2DqTdMzFL0Y9s"
-    
-        var ajaxSearch = function(event) {
-            event.preventDefault()
-            console.log("buttonclicked")
-            
-            var userInput = $("#input").val()
-            var queryURL = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + userInput + "&key=" + apiKey
-    
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function(response){
-                console.log(queryURL)
-                console.log(response)
-            })
-        }
-    
-        $("#search-btn").on("click", ajaxSearch)
-    
-    </script>
-    <script src="assets/javascript.js"></script>  
 </body>
+
 </html>

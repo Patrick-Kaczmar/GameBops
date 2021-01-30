@@ -45,10 +45,8 @@ $.ajax(settings).done(function (response) {
         $(".game-display").append(a);
         $(".game-display").append(b);
     }
-
-    
-
 });
+
 
 $(document).on("click", ".save-btn", function(event) {
     event.preventDefault();
@@ -70,16 +68,45 @@ $(document).on("click", ".save-btn", function(event) {
                         console.log(game);
                     }
 });
+var searchBtn = $("#search-btn")
+    var userInput = $("#input")
 
-var userInput = "jebaited"
-var apiKey = "AIzaSyDIdlknMUSqeJZ_ukyOVh2DqTdMzFL0Y9s"
-var queryURL = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + userInput + "&key=" + apiKey
+    function ajaxSearch(event) {
+        event.preventDefault()
 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(queryURL)
-    console.log(response)
-})
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val() + "&limit=1",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "b35fd7d145mshb4adf51ded8770dp1c0953jsn373558f355ca",
+                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+            }
+        }
+            $.ajax(settings).done(function (response) {
+                console.log(userInput)
+                console.log(response);
 
+                var albumURL = "https://deezerdevs-deezer.p.rapidapi.com/album/" + response.data[0].album.id
+
+                $.ajax({
+                "url": albumURL,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": "b35fd7d145mshb4adf51ded8770dp1c0953jsn373558f355ca",
+                    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+                }
+            }).then(function (albumResponse){
+                console.log(albumResponse)
+                $(".youtube-display").append(`<img src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
+                var ol = $(`<ol>`)
+                $(".youtube-display").append(ol)
+
+                for (i = 0; i < albumResponse.tracks.data.length; i++) {
+                    ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${albumResponse.tracks.data[i].title}</li></a>`)
+                }
+            })
+        })
+    }
+    searchBtn.on("click", ajaxSearch)
