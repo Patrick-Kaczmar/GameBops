@@ -78,3 +78,9 @@ input {
 #search-btn:hover {
     background: rgb(48, 155, 255);
 }
+
+button:hover {
+    background:rgb(185, 185, 185);
+    padding: 5px;
+    border-radius: 3px;
+}
