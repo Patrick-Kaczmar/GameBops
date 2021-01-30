@@ -28,6 +28,7 @@ form {
     border-radius: 20px;
     margin-left: 25%;
     margin-right: 25%;
+    margin-bottom: 5%;
     max-width: 50%;
 }
 
@@ -40,15 +41,42 @@ label {
 
 input {
     border-radius: 8px !important;
+    margin: 0 5px 0 16px !important;
 }
 
-.game-display {
-    border: solid white 1px;
+img {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
 }
 
+/* img:hover {
+    background-color: rgb(240, 240, 240);
+    opacity: 0.8;
+} */
+button {
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    background: rgb(0, 132, 255);
+    padding: 5px;
+    border-radius: 3px;
+    
+}
+
+.game-display,
 .youtube-display {
     border: solid white 1px;
+    border-radius: 16px;
 }
+
+.free-game-result {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
 #GameBops {
     font-size: 46px;
     letter-spacing: 5px;
@@ -62,11 +90,13 @@ input {
     background: rgb(0, 132, 255);
     border: solid 2px rgb(240, 240, 240);
     border-radius: 8px;
-    margin-left: -6px;
+    margin-left: -14px;
+    margin-right: 16px;
     position: relative; 
     transition: 0.2s ease-in-out;
 }
 
 #search-btn:hover {
     background: rgb(48, 155, 255);
+    padding: 0px;
 }
