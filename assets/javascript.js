@@ -1,6 +1,6 @@
 var saveBtn = $('.save-btn');
 var favGames = [];
-
+var favTracks = [];
 const settings = {
     "async": true,
     "crossDomain": true,
@@ -41,7 +41,7 @@ $.ajax(settings).done(function (response) {
         
         b.text("Add to Favorites");
         // saveBtn.val(title);
-        console.log(b);
+        // console.log(b);
         $(".game-display").append(a);
         $(".game-display").append(b);
     }
@@ -51,22 +51,22 @@ $.ajax(settings).done(function (response) {
 $(document).on("click", ".save-btn", function(event) {
     event.preventDefault();
     console.log(this);
-                    // creating a variable named city, assigning text value to it
-                    var game = $(this).val();
-                    // var game = $(this).val().trim();
-                    // was if (city !== null && city !== "")
-                    if (favGames.includes(game) === false) {
-                        // logging city to console
-                        console.log(game);
+            // creating a variable named city, assigning text value to it
+            var game = $(this).val();
+            // var game = $(this).val().trim();
+            // was if (city !== null && city !== "")
+            if (favGames.includes(game) === false) {
+                // logging city to console
+                // console.log(game);
 
-                        // add chosen game to the favGames array
-                        favGames.push(game);
-                        // saving array of favorite games to local storage
-                        localStorage.setItem("Favorite Games", JSON.stringify(favGames));
-                    }
-                    else {
-                        console.log(game);
-                    }
+                // add chosen game to the favGames array
+                favGames.push(game);
+                // saving array of favorite games to local storage
+                localStorage.setItem("Favorite Games", JSON.stringify(favGames));
+            }
+            // else {
+            //     console.log(game);
+            // }
 });
 var searchBtn = $("#search-btn")
     var userInput = $("#input")
@@ -101,12 +101,43 @@ var searchBtn = $("#search-btn")
                 console.log(albumResponse)
                 $(".youtube-display").append(`<img src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
                 var ol = $(`<ol>`)
+                
                 $(".youtube-display").append(ol)
 
                 for (i = 0; i < albumResponse.tracks.data.length; i++) {
-                    ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${albumResponse.tracks.data[i].title}</li></a>`)
+                    var title = albumResponse.tracks.data[i].title;
+                    ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${title}</li></a>`)
+                    var b = $("<button>");
+                    b.addClass("save-btn");
+                    b.val(title);
+        
+                    b.text("Add to Favorites");
+                    // saveBtn.val(title);
+                    console.log(b);
+        
+                    ol.append(b);
                 }
             })
         })
     }
     searchBtn.on("click", ajaxSearch)
+
+    $(document).on("click", ".save-btn", function(event) {
+        event.preventDefault();
+        console.log(this);
+                // creating a variable named city, assigning text value to it
+                var track = $(this).val();
+                
+                if (favTracks.includes(track) === false) {
+                    // logging track to console
+                    console.log(track);
+    
+                    // add chosen track to the favTracks array
+                    favTracks.push(track);
+                    // saving array of favorite tracks to local storage
+                    localStorage.setItem("Favorite Tracks", JSON.stringify(favTracks));
+                }
+                else {
+                    console.log(track);
+                }
+    });
