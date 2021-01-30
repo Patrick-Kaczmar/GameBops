@@ -51,7 +51,7 @@ $.ajax(settings).done(function (response) {
 $(document).on("click", ".game-save-btn", function(event) {
     event.preventDefault();
     console.log(this);
-            // creating a variable named city, assigning text value to it
+            // creating a variable named game with value of button clicked on
             var game = $(this).val();
             // var game = $(this).val().trim();
             // was if (city !== null && city !== "")
@@ -126,7 +126,7 @@ var searchBtn = $("#search-btn")
     $(document).on("click", ".track-save-btn", function(event) {
         event.preventDefault();
         console.log(this);
-                // creating a variable named city, assigning text value to it
+                // creating a track variable, assigning value of button clicked 
                 var track = $(this).val();
                 
                 if (favTracks.includes(track) === false) {
