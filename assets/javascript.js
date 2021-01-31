@@ -28,7 +28,7 @@ $.ajax(settings).done(function (response) {
         var gameUrl = response[i].game_url;
         var a = `
           <div class="free-game-result">
-            <a href= "${gameUrl}">
+            <a target="_blank" href= "${gameUrl}">
             <h2>${title}</h2>
             <img src="${thumbnail}" alt="${title}">
             </a>
@@ -119,7 +119,7 @@ function ajaxSearch(event) {
 
             for (i = 0; i < albumResponse.tracks.data.length; i++) {
                 var title = albumResponse.tracks.data[i].title;
-                ol.append(`<a href="${albumResponse.tracks.data[i].link}"><li>${title}</li></a>`)
+                ol.append(`<a target="_blank" href="${albumResponse.tracks.data[i].link}"><li>${title}</li></a>`)
                 var b = $("<button>");
                 b.addClass("track-save-btn");
                 b.addClass("music-result");
