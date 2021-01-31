@@ -1,45 +1,37 @@
 var GameSaveBtn = $('.game-save-btn');
 var favGames = [];
-
 var favTracks = [];
-
-
 $(window).ready(function () {
     // Get the modal
     var modal = document.getElementById("Modal");
     modal.style.display = "block";
 });
-
+// free-to-play API
 const settings = {
     "async": true,
     "crossDomain": true,
     "url": "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc",
     "method": "GET",
     "headers": {
-        "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
-        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
+    "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+    "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
-
 };
 $(".game-display").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
         var a = $("<ul>");
+        // storing tital,thumbnail, and game url into variables
         var title = response[i].title;
-        // console.log(title);
-
         var thumbnail = response[i].thumbnail;
-        // console.log(thumbnail);
-
         var gameUrl = response[i].game_url;
-        // console.log(gameUrl);
-
         var a = `
           <div class="free-game-result">
             <a href= "${gameUrl}">
-            <img src="${thumbnail}" alt="${title}"></a>
             <h1>${title}</h1>
+            <img src="${thumbnail}" alt="${title}">
+            </a>
           </div>
           `;
         // backtick method not working for buttons yet...
@@ -48,7 +40,6 @@ $.ajax(settings).done(function (response) {
         var b = $("<button>");
         b.addClass("game-save-btn");
         b.val(title);
-
         b.text("Add to Favorites");
         // saveBtn.val(title);
         // console.log(b);
@@ -56,10 +47,6 @@ $.ajax(settings).done(function (response) {
         $(".game-display").append(b);
     }
 });
-
-
-
-
 
 $(document).on("click", ".game-save-btn", function (event) {
     event.preventDefault();
@@ -115,13 +102,13 @@ function ajaxSearch(event) {
             var genreCheck = albumResponse.genres.data
             var isGame = false
             for (var i = 0; i < genreCheck.length; i++)
-            if (genreCheck[i].id == 173 || genreCheck[i].id == 179) {
-                isGame = true
-                break;
-            } else {
-                console.log("NOT A GAME")
-                return;
-            }
+                if (genreCheck[i].id == 173 || genreCheck[i].id == 179) {
+                    isGame = true
+                    break;
+                } else {
+                    console.log("NOT A GAME")
+                    return;
+                }
 
             $(".youtube-display").empty()
             $(".youtube-display").append(`<img class="music-image" src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
