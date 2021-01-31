@@ -2,6 +2,8 @@ var GameSaveBtn = $('.game-save-btn');
 var favGames = [];
 var favTracks = [];
 $(window).ready(function () {
+    // initializing foundation js
+    $(document).foundation();
     // Get the modal
     var modal = document.getElementById("Modal");
     modal.style.display = "block";
@@ -119,7 +121,7 @@ function ajaxSearch(event) {
 
             for (i = 0; i < albumResponse.tracks.data.length; i++) {
                 var title = albumResponse.tracks.data[i].title;
-                ol.append(`<a target="_blank" href="${albumResponse.tracks.data[i].link}"><li>${title}</li></a>`)
+                ol.append(`<a target="_blank" href="${albumResponse.tracks.data[i].link}"><li class="track-li">${title}</li></a>`)
                 var b = $("<button>");
                 b.addClass("track-save-btn");
                 b.addClass("music-result");
