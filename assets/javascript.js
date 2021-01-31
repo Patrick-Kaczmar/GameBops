@@ -38,7 +38,7 @@ $.ajax(settings).done(function (response) {
         var a = `
           <div class="free-game-result">
             <img src="${thumbnail}" alt="${title}"/>
-            <h1>${title}</h1>
+            <h2>${title}</h2>
           </div>
           `;
         // backtick method not working for buttons yet...
@@ -65,7 +65,7 @@ $(document).on("click", ".game-save-btn", function (event) {
     console.log(this);
     // creating a variable named game with value of button clicked on
     var game = $(this).val();
-    // var game = $(this).val().trim();
+    
     // was if (city !== null && city !== "")
     if (favGames.includes(game) === false) {
         // logging city to console
@@ -127,7 +127,7 @@ function ajaxSearch(event) {
             $(".youtube-display").append(`<h2>${albumResponse.title}</h2>`)
             var ol = $(`<ol class="music-result">`)
 
-            $(".youtube-display").append(ol)
+            $(".youtube-display").append(ol);
 
             for (i = 0; i < albumResponse.tracks.data.length; i++) {
                 var title = albumResponse.tracks.data[i].title;
