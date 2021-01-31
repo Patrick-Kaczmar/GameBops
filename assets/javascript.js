@@ -8,6 +8,42 @@ $(window).ready(function () {
     var modal = document.getElementById("Modal");
     modal.style.display = "block";
 });
+// checking if any games have been saved in local storage
+if (localStorage.getItem("Favorite Games")){
+    // clearing any existing buttons
+    $('#fav-games').empty();
+    // favGames array will contain items that were saved in local storage
+    favGames = JSON.parse(localStorage.getItem("Favorite Games"));
+    // creating a list item for each game 
+    for (var i = 0; i < favGames.length; i++){
+        var g = `
+        <li><a href="#">${favGames[i]}</a></li>
+        `
+        $('#fav-games').append(g);
+    }
+}
+else {
+    // if no local storage, favGames is an empty array
+    favGames = [];
+};
+// checking if any music has been saved in local storage
+if (localStorage.getItem("Favorite Tracks")){
+     // clearing any existing buttons
+     $('#fav-tracks').empty();
+     // favTracks array will contain items that were saved in local storage
+     favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
+     // creating a list item for each track
+     for (var i = 0; i < favTracks.length; i++){
+         var t = `
+         <li><a href="#">${favTracks[i]}</a></li>
+         `
+         $('#fav-tracks').append(t);
+     }
+ }
+ else {
+     // if no local storage, favTracks is an empty array
+     favTracks = [];
+}
 // free-to-play API
 const settings = {
     "async": true,
@@ -65,13 +101,18 @@ $(document).on("click", ".game-save-btn", function (event) {
         favGames.push(game);
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
+        // adding game to the favorites list at top of page
+        var addFavGame = `
+        <li><a href="#">${game}</a></li>
+        `
+        $('#fav-games').append(addFavGame);
     }
     // else {
     //     console.log(game);
     // }
 });
-var searchBtn = $("#search-btn")
-var userInput = $("#input")
+var searchBtn = $("#search-btn");
+var userInput = $("#input");
 
 function ajaxSearch(event) {
     event.preventDefault()
@@ -152,6 +193,11 @@ $(document).on("click", ".track-save-btn", function (event) {
         favTracks.push(track);
         // saving array of favorite tracks to local storage
         localStorage.setItem("Favorite Tracks", JSON.stringify(favTracks));
+
+        addFavTrack = `
+        <li><a href="#">${track}</a></li>
+        `
+        $('#fav-tracks').append(addFavTrack);
     }
     else {
         console.log(track);
