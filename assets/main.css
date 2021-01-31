@@ -1,7 +1,7 @@
 body {
     background: rgb(53, 53, 53);
     color: white;
-    padding: 15px;
+    padding: 10px 15px 15px 15px;
     font-family: 'Trebuchet MS';
     font-size: 22px;
 }
@@ -58,9 +58,7 @@ img {
     color: white;
     transition: 0.2s ease-in-out;
     padding: 5px;
-    margin: 0 0 20px 0;
-    /* margin-left: 20%;
-    margin-right: 40%; */
+    margin: 10px 0 20px 0;
 }
 
 .game-save-btn:hover,
@@ -88,29 +86,29 @@ img {
 .music-result {
     margin: 10px;
     text-align: center;
-    /* justify-content: space-around; */
 }
 
 ol {
     padding-left: 20%;
     padding-right: 20%;
-    /* border: 1px solid white; */
 }
 
-li {
-    margin-top: 10px;
-    
-    /* border: 1px solid white; */
+.favorites-li {
+    background-color: rgb(200, 200, 200);
 }
-li:hover {
+.track-li {
+    margin-top: 10px;
+}
+
+.track:hover {
     color:rgb(48, 155, 255);
 }
+
 .free-game-result {
     padding: 15px 10px 0 10px;
     margin: 15px 10;
     text-align: center;
 }
-
 
 #GameBops {
     font-size: 48px;
