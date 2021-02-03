@@ -123,7 +123,7 @@ function ajaxSearch(event) {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val() + "&limit=1",
+        "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val() + " Original Soundtrack" + "&limit=1",
         "method": "GET",
         "headers": {
             "x-rapidapi-key": "b35fd7d145mshb4adf51ded8770dp1c0953jsn373558f355ca",
@@ -152,7 +152,7 @@ function ajaxSearch(event) {
                     isGame = true
                     break;
                 } else {
-                    console.log("NOT A GAME")
+                    console.log("NO ALBUM")
                     return;
                 }
 
