@@ -136,13 +136,6 @@ $(document).on("click", ".game-save-btn", function (event) {
         href: $(this).attr("data-url")
     }
 
-
-    if (favGames.includes(game.value) === false) {
-
-        console.log(game);
-        // removing placeholder message
-
-    
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
         // *************** can add modal here *************
@@ -164,9 +157,6 @@ $(document).on("click", ".game-save-btn", function (event) {
         // adding game to the favorites list at top of page
         var addFavGame = `
         <li><a target="_blank" href="${game.href}">${game.value}</a></li>
-
-        addFavGame = `
-        <li><a href="${game.href}">${game.value}</a></li>
 
         `
         $('#fav-games').append(addFavGame);
@@ -294,4 +284,5 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
 }
