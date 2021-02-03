@@ -17,7 +17,7 @@ if (localStorage.getItem("Favorite Games")){
     // creating a list item for each game 
     for (var i = 0; i < favGames.length; i++){
         var g = `
-        <li><a href="#">${favGames[i]}</a></li>
+        <li><a target="_blank" href="${favGames[i].href}">${favGames[i].value}</a></li>
         `
         $('#fav-games').append(g);
     }
@@ -26,6 +26,7 @@ else {
     // if no local storage, favGames is an empty array
     favGames = [];
 };
+
 // checking if any music has been saved in local storage
 if (localStorage.getItem("Favorite Tracks")){
      // clearing any existing buttons
@@ -35,7 +36,7 @@ if (localStorage.getItem("Favorite Tracks")){
      // creating a list item for each track
      for (var i = 0; i < favTracks.length; i++){
          var t = `
-         <li><a href="#">${favTracks[i]}</a></li>
+         <li><a target="_blank" href="${favTracks[i].href}">${favTracks[i].value}</a></li>
          `
          $('#fav-tracks').append(t);
      }
@@ -68,19 +69,14 @@ $.ajax(settings).done(function (response) {
           <div class="free-game-result">
             <a target="_blank" href= "${gameUrl}">
             <h2>${title}</h2>
-            <img src="${thumbnail}" alt="${title}">
+            <img class="game-img" src="${thumbnail}" alt="${title}">
             </a>
           </div>
           `;
-        // backtick method not working for buttons yet...
-        //   var b = `
-        //   <button class="save-btn">Add to Favorites</button>`
-        var b = $("<button>");
-        b.addClass("game-save-btn");
-        b.val(title);
-        b.text("Add to Favorites");
-        // saveBtn.val(title);
-        // console.log(b);
+         
+          var b = `
+          <button class="game-save-btn" value="${title}" data-url="${gameUrl}">Add to Favorites</button>
+        `
         $(".game-display").append(a);
         $(".game-display").append(b);
     }
@@ -90,23 +86,29 @@ $(document).on("click", ".game-save-btn", function (event) {
     event.preventDefault();
     console.log(this);
     // creating a variable named game with value of button clicked on
-    var game = $(this).val();
+    var game = {
+        value: $(this).val(),
+        href: $(this).attr("data-url")
+    }
     
-    // was if (city !== null && city !== "")
-    if (favGames.includes(game) === false) {
-        // logging city to console
-        // console.log(game);
-
+    if (favGames.includes(game.value) === false) {
+        
+        console.log(game);
+        // removing placeholder message
+        $('#init-game-message').remove();
         // add chosen game to the favGames array
         favGames.push(game);
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
+        
         // adding game to the favorites list at top of page
         var addFavGame = `
-        <li><a href="#">${game}</a></li>
+        <li><a target="_blank" href="${game.href}">${game.value}</a></li>
         `
         $('#fav-games').append(addFavGame);
+        console.log(addFavGame);
     }
+    // can add a modal here to tell user this game is already saved in favorites
     // else {
     //     console.log(game);
     // }
@@ -162,17 +164,19 @@ function ajaxSearch(event) {
 
             for (i = 0; i < albumResponse.tracks.data.length; i++) {
                 var title = albumResponse.tracks.data[i].title;
-                ol.append(`<a target="_blank" href="${albumResponse.tracks.data[i].link}"><li class="track-li">${title}</li></a>`)
-                var b = $("<button>");
-                b.addClass("track-save-btn");
-                b.addClass("music-result");
-                b.val(title);
+                var link = albumResponse.tracks.data[i].link;
+                ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
+                ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
+                // var b = $("<button>");
+                // b.addClass("track-save-btn");
+                // b.addClass("music-result");
+                // b.val(title);
 
-                b.text("Add to Favorites");
+                // b.text("Add to Favorites");
                 // saveBtn.val(title);
                 // console.log(b);
 
-                ol.append(b);
+                // ol.append(b);
             }
         })
     })
@@ -182,20 +186,23 @@ searchBtn.on("click", ajaxSearch)
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
     console.log(this);
-    // creating a track variable, assigning value of button clicked 
-    var track = $(this).val();
-
-    if (favTracks.includes(track) === false) {
+    // creating a track variable, assigning value and link for track
+    var track = {
+        value: $(this).val(),
+        href: $(this).attr("data-url")
+    }
+    if (favTracks.includes(track.value) === false) {
         // logging track to console
         console.log(track);
-
+        // remove placeholder message
+        $('#init-music-message').remove();
         // add chosen track to the favTracks array
         favTracks.push(track);
         // saving array of favorite tracks to local storage
         localStorage.setItem("Favorite Tracks", JSON.stringify(favTracks));
 
         addFavTrack = `
-        <li><a href="#">${track}</a></li>
+        <li><a href="${track.href}">${track.value}</a></li>
         `
         $('#fav-tracks').append(addFavTrack);
     }

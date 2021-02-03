@@ -32,13 +32,6 @@ form {
     max-width: 50%;
 }
 
-label {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 4px;
-} 
-
 input {
     border-radius: 8px !important;
     margin: 0 5px 0 16px !important;
@@ -49,38 +42,42 @@ img {
     border-radius: 4px;
 }
 
-/* img:hover {
+/* .game-img {
+    margin-bottom: 8px;
+} */
+
+.game-img:hover {
     background-color: rgb(240, 240, 240);
     opacity: 0.8;
-} */
+}
 .game-save-btn,
 .track-save-btn {
     color: white;
     transition: 0.2s ease-in-out;
     padding: 5px;
-    margin: 10px 0 20px 0;
+    margin: 10px 0 20px 0 !important;
 }
 
 .game-save-btn:hover,
 .track-save-btn:hover {
+    color: white;
     background: rgb(0, 132, 255);
     padding: 5px;
     border-radius: 3px;
-    
 }
 
-.game-display {
-    border: solid white 1px;
-    border-radius: 16px;
-    text-align: center;
-    padding: 15px;
-}
-
+.game-display,
 .youtube-display {
     border: solid white 1px;
     border-radius: 16px;
     text-align: center;
     padding: 15px;
+}
+
+.free-game-result {
+    padding: 15px 10px 0 10px;
+    margin: 15px 10;
+    text-align: center;
 }
 
 .music-result {
@@ -104,18 +101,12 @@ ol {
     color:rgb(48, 155, 255);
 }
 
-.free-game-result {
-    padding: 15px 10px 0 10px;
-    margin: 15px 10;
-    text-align: center;
-}
-
 #GameBops {
     font-size: 48px;
     letter-spacing: 5px;
     margin: 10px;
     /* text-shadow: 1px 1px 6px rgb(185, 185, 185); */
-    /* text-shadow: 1px 1px 8px rgb(154, 206, 255); */
+    text-shadow: 1px 1px 8px rgb(154, 206, 255);
 }
 
 #search-btn {
@@ -176,6 +167,3 @@ ol {
     text-decoration: none;
     cursor: pointer;
   }
-
-  
-
