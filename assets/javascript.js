@@ -267,8 +267,3 @@ window.onclick = function (event) {
 function modalfunction(){
 modalerror.style.display = "block";
 }
-
-};
-
-
-
