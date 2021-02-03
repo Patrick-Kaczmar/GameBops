@@ -5,7 +5,7 @@ $(window).ready(function () {
     // initializing foundation js
     $(document).foundation();
     // Get the modal
-    var modal = document.getElementById("Modal");
+    var modal = document.getElementById("modal-greetings");
     modal.style.display = "block";
 });
 // checking if any games have been saved in local storage
@@ -95,8 +95,10 @@ $(document).on("click", ".game-save-btn", function (event) {
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
         // *************** can add modal here *************
         // logging track is already saved message to console
-        console.log(game + " is already saved");
-    }
+          //console.log(game + " is already saved")//
+          modalfunction();
+         }
+
     else {
         // remove placeholder message
         $('#init-game-message').remove();
@@ -216,19 +218,31 @@ $(document).on("click", ".track-save-btn", function (event) {
 });
 
 // Get the modal
-var modal = document.getElementById("Modal");
+var modal = document.getElementById("modal-greetings");
+var modalerror = document.getElementById("modal-error");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
+var spanerror = document.getElementsByClassName("close")[1];
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
     modal.style.display = "none";
 }
+spanerror.onclick = function () {
+    modalerror.style.display = "none";
+}
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    if (event.target == modalerror) {
+        modalerror.style.display = "none"
+    }
+}
+
+function modalfunction(){
+modalerror.style.display = "block";
 }

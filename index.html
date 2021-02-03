@@ -14,7 +14,7 @@
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/main.css">
     <script src="assets/javascript.js" defer></script>
-    
+
 </head>
 
 <body>
@@ -47,16 +47,22 @@
 
         <h5 id="sub-header">Find Game Soundtracks</h5>
     </header>
-        <!-- The Modal -->
-<div id="Modal" class="modal">
+    <!-- The Modal -->
+    <div id="modal-greetings" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Use the SearchBar to find your favorite games and gaming soundtracks!!</p>
+        <!-- Modal Greeting -->
+        <div class="modal-greeting-content">
+            <span class="close">&times;</span>
+            <p>Use the SearchBar to find your favorite games and gaming soundtracks!!</p>
+        </div>
     </div>
-  
-  </div>
+        <!-- Modal Error -->
+     <div id="modal-error" class="modal">
+         <div class="modal-error-content">
+            <span class="close">&times;</span>
+            <p>That title is already in your favorites!!</p>
+         </div>
+    </div>
     <main class="grid-x grid-padding-x align-spaced">
         <form class="cell small-6">
             <input id="input" type="text" placeholder="Search for any game...">
@@ -71,7 +77,7 @@
 
         </div>
     </section>
-    
+
 </body>
 
 </html>
