@@ -1,6 +1,6 @@
 var GameSaveBtn = $('.game-save-btn');
-var favGames = [];
-var favTracks = [];
+// var favGames = [];
+// var favTracks = [];
 $(window).ready(function () {
     // initializing foundation js
     $(document).foundation();
@@ -13,7 +13,7 @@ if (localStorage.getItem("Favorite Games")){
     // clearing any existing buttons
     $('#fav-games').empty();
     // favGames array will contain items that were saved in local storage
-    favGames = JSON.parse(localStorage.getItem("Favorite Games"));
+    var favGames = JSON.parse(localStorage.getItem("Favorite Games"));
     // creating a list item for each game 
     for (var i = 0; i < favGames.length; i++){
         var g = `
@@ -24,7 +24,7 @@ if (localStorage.getItem("Favorite Games")){
 }
 else {
     // if no local storage, favGames is an empty array
-    favGames = [];
+    var favGames = [];
 };
 
 // checking if any music has been saved in local storage
@@ -32,7 +32,7 @@ if (localStorage.getItem("Favorite Tracks")){
      // clearing any existing buttons
      $('#fav-tracks').empty();
      // favTracks array will contain items that were saved in local storage
-     favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
+     var favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
      // creating a list item for each track
      for (var i = 0; i < favTracks.length; i++){
          var t = `
@@ -43,7 +43,7 @@ if (localStorage.getItem("Favorite Tracks")){
  }
  else {
      // if no local storage, favTracks is an empty array
-     favTracks = [];
+     var favTracks = [];
 }
 // free-to-play API
 const settings = {
@@ -84,34 +84,35 @@ $.ajax(settings).done(function (response) {
 
 $(document).on("click", ".game-save-btn", function (event) {
     event.preventDefault();
-    console.log(this);
+    // console.log(this);
     // creating a variable named game with value of button clicked on
     var game = {
         value: $(this).val(),
         href: $(this).attr("data-url")
     }
     
-    if (favGames.includes(game.value) === false) {
-        
-        console.log(game);
-        // removing placeholder message
+    // if favGames contains this track already...
+    if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
+
+        // logging track is already saved message to console
+        console.log(game + " is already saved");
+    }
+    else {
+        // remove placeholder message
         $('#init-game-message').remove();
-        // add chosen game to the favGames array
+        console.log(game);
+
+        // add chosen game to the favgames array
         favGames.push(game);
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
-        
-        // adding game to the favorites list at top of page
-        var addFavGame = `
-        <li><a target="_blank" href="${game.href}">${game.value}</a></li>
+
+        addFavGame = `
+        <li><a href="${game.href}">${game.value}</a></li>
         `
         $('#fav-games').append(addFavGame);
-        console.log(addFavGame);
     }
-    // can add a modal here to tell user this game is already saved in favorites
-    // else {
-    //     console.log(game);
-    // }
+    
 });
 var searchBtn = $("#search-btn");
 var userInput = $("#input");
@@ -191,11 +192,17 @@ $(document).on("click", ".track-save-btn", function (event) {
         value: $(this).val(),
         href: $(this).attr("data-url")
     }
-    if (favTracks.includes(track.value) === false) {
-        // logging track to console
-        console.log(track);
+    // if favTracks contains this track already...
+    if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
+
+        // logging track is already saved message to console
+        console.log(track + " is already saved");
+    }
+    else {
         // remove placeholder message
         $('#init-music-message').remove();
+        console.log(track);
+
         // add chosen track to the favTracks array
         favTracks.push(track);
         // saving array of favorite tracks to local storage
@@ -205,9 +212,6 @@ $(document).on("click", ".track-save-btn", function (event) {
         <li><a href="${track.href}">${track.value}</a></li>
         `
         $('#fav-tracks').append(addFavTrack);
-    }
-    else {
-        console.log(track);
     }
 });
 
@@ -228,4 +232,3 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-
