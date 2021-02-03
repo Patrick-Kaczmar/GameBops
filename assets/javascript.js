@@ -157,7 +157,6 @@ $(document).on("click", ".game-save-btn", function (event) {
         // adding game to the favorites list at top of page
         var addFavGame = `
         <li><a target="_blank" href="${game.href}">${game.value}</a></li>
-
         `
         $('#fav-games').append(addFavGame);
     }
@@ -284,5 +283,6 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
-}
+
+}}
+
