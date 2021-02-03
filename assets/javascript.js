@@ -1,6 +1,3 @@
-var GameSaveBtn = $('.game-save-btn');
-// var favGames = [];
-// var favTracks = [];
 $(window).ready(function () {
     // initializing foundation js
     $(document).foundation();
@@ -44,24 +41,7 @@ if (localStorage.getItem("Favorite Tracks")) {
 }
 else {
     // if no local storage, favTracks is an empty array
-
-if (localStorage.getItem("Favorite Tracks")){
-     // clearing any existing buttons
-     $('#fav-tracks').empty();
-     // favTracks array will contain items that were saved in local storage
-     var favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
-     // creating a list item for each track
-     for (var i = 0; i < favTracks.length; i++){
-         var t = `
-         <li><a target="_blank" href="${favTracks[i].href}">${favTracks[i].value}</a></li>
-         `
-         $('#fav-tracks').append(t);
-     }
- }
- else {
-     // if no local storage, favTracks is an empty array
-     var favTracks = [];
-
+    var favTracks = [];
 }
 // free-to-play API
 const settings = {
@@ -74,7 +54,7 @@ const settings = {
         "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
 };
- 
+
 
 function rawgSearch(event) {
     event.preventDefault()
@@ -107,7 +87,7 @@ $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
         var a = $("<ul>");
-        // storing tital,thumbnail, and game url into variables
+        // storing title,thumbnail, and game url into variables
         var title = response[i].title;
         var thumbnail = response[i].thumbnail;
         var gameUrl = response[i].game_url;
@@ -144,7 +124,6 @@ $(document).on("click", ".game-save-btn", function (event) {
     }
     else {
         // remove placeholder message
-
         $('#init-game-message').remove();
         console.log(game);
 
@@ -153,14 +132,13 @@ $(document).on("click", ".game-save-btn", function (event) {
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
 
-
         // adding game to the favorites list at top of page
         var addFavGame = `
         <li><a target="_blank" href="${game.href}">${game.value}</a></li>
         `
         $('#fav-games').append(addFavGame);
     }
-    
+
 });
 var searchBtn = $("#search-btn");
 var userInput = $("#input");
@@ -216,25 +194,15 @@ function ajaxSearch(event) {
                 var link = albumResponse.tracks.data[i].link;
                 ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
                 ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
-                // var b = $("<button>");
-                // b.addClass("track-save-btn");
-                // b.addClass("music-result");
-                // b.val(title);
-
-                // b.text("Add to Favorites");
-                // saveBtn.val(title);
-                // console.log(b);
-
-                // ol.append(b);
             }
         })
     })
-}
-function multiFunction(event){
+};
+function multiFunction(event) {
     rawgSearch(event);
     ajaxSearch(event);
 }
-searchBtn.on("click",multiFunction)
+searchBtn.on("click", multiFunction)
 
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
@@ -246,7 +214,7 @@ $(document).on("click", ".track-save-btn", function (event) {
     }
     // if favTracks contains this track already...
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
-        // ******* can add a modal here if we want 
+        // ************** can add a modal here if we want ****************************
         // logging track is already saved message to console
         console.log(track + " is already saved");
     }
@@ -283,6 +251,6 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+};
 
-}}
 
