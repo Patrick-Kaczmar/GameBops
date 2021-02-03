@@ -1,6 +1,3 @@
-var GameSaveBtn = $('.game-save-btn');
-// var favGames = [];
-// var favTracks = [];
 $(window).ready(function () {
     // initializing foundation js
     $(document).foundation();
@@ -9,13 +6,13 @@ $(window).ready(function () {
     modal.style.display = "block";
 });
 // checking if any games have been saved in local storage
-if (localStorage.getItem("Favorite Games")){
+if (localStorage.getItem("Favorite Games")) {
     // clearing any existing buttons
     $('#fav-games').empty();
     // favGames array will contain items that were saved in local storage
     var favGames = JSON.parse(localStorage.getItem("Favorite Games"));
     // creating a list item for each game 
-    for (var i = 0; i < favGames.length; i++){
+    for (var i = 0; i < favGames.length; i++) {
         var g = `
         <li><a target="_blank" href="${favGames[i].href}">${favGames[i].value}</a></li>
         `
@@ -28,22 +25,23 @@ else {
 };
 
 // checking if any music has been saved in local storage
-if (localStorage.getItem("Favorite Tracks")){
-     // clearing any existing buttons
-     $('#fav-tracks').empty();
-     // favTracks array will contain items that were saved in local storage
-     var favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
-     // creating a list item for each track
-     for (var i = 0; i < favTracks.length; i++){
-         var t = `
+
+if (localStorage.getItem("Favorite Tracks")) {
+    // clearing any existing buttons
+    $('#fav-tracks').empty();
+    // favTracks array will contain items that were saved in local storage
+    favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
+    // creating a list item for each track
+    for (var i = 0; i < favTracks.length; i++) {
+        var t = `
          <li><a target="_blank" href="${favTracks[i].href}">${favTracks[i].value}</a></li>
          `
-         $('#fav-tracks').append(t);
-     }
- }
- else {
-     // if no local storage, favTracks is an empty array
-     var favTracks = [];
+        $('#fav-tracks').append(t);
+    }
+}
+else {
+    // if no local storage, favTracks is an empty array
+    var favTracks = [];
 }
 // free-to-play API
 const settings = {
@@ -52,16 +50,44 @@ const settings = {
     "url": "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc",
     "method": "GET",
     "headers": {
-    "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
-    "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
+        "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
 };
-$(".game-display").empty();
+
+
+function rawgSearch(event) {
+    event.preventDefault()
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rawg-video-games-database.p.rapidapi.com/games?page_size=1&search=" + userInput.val(),
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+            "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
+        }
+    };
+    $("#gameDisplay").empty();
+    $.ajax(settings).done(function (response) {
+        console.log(response.results);
+        var titles = response.results[0].name;
+        var img = response.results[0].background_image;
+        var c = `<div>
+            <h1>${titles}</h1>
+            <img src="${img}" alt="${titles}">
+            </a>
+          </div>`;
+        $("#gameDisplay").append(c);
+    })
+}
+
+$(".freeToPlay").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
         var a = $("<ul>");
-        // storing tital,thumbnail, and game url into variables
+        // storing title,thumbnail, and game url into variables
         var title = response[i].title;
         var thumbnail = response[i].thumbnail;
         var gameUrl = response[i].game_url;
@@ -73,12 +99,11 @@ $.ajax(settings).done(function (response) {
             </a>
           </div>
           `;
-         
-          var b = `
+        var b = `
           <button class="game-save-btn" value="${title}" data-url="${gameUrl}">Add to Favorites</button>
         `
-        $(".game-display").append(a);
-        $(".game-display").append(b);
+        $(".freeToPlay").append(a);
+        $(".freeToPlay").append(b);
     }
 });
 
@@ -90,7 +115,7 @@ $(document).on("click", ".game-save-btn", function (event) {
         value: $(this).val(),
         href: $(this).attr("data-url")
     }
-    
+
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
         // *************** can add modal here *************
@@ -109,12 +134,13 @@ $(document).on("click", ".game-save-btn", function (event) {
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
 
-        addFavGame = `
-        <li><a href="${game.href}">${game.value}</a></li>
+        // adding game to the favorites list at top of page
+        var addFavGame = `
+        <li><a target="_blank" href="${game.href}">${game.value}</a></li>
         `
         $('#fav-games').append(addFavGame);
     }
-    
+
 });
 var searchBtn = $("#search-btn");
 var userInput = $("#input");
@@ -125,7 +151,7 @@ function ajaxSearch(event) {
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val() + "&limit=1",
+        "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + userInput.val() + " Original Soundtrack" + "&limit=1",
         "method": "GET",
         "headers": {
             "x-rapidapi-key": "b35fd7d145mshb4adf51ded8770dp1c0953jsn373558f355ca",
@@ -154,7 +180,7 @@ function ajaxSearch(event) {
                     isGame = true
                     break;
                 } else {
-                    console.log("NOT A GAME")
+                    console.log("NO ALBUM")
                     return;
                 }
 
@@ -170,21 +196,15 @@ function ajaxSearch(event) {
                 var link = albumResponse.tracks.data[i].link;
                 ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
                 ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
-                // var b = $("<button>");
-                // b.addClass("track-save-btn");
-                // b.addClass("music-result");
-                // b.val(title);
-
-                // b.text("Add to Favorites");
-                // saveBtn.val(title);
-                // console.log(b);
-
-                // ol.append(b);
             }
         })
     })
+};
+function multiFunction(event) {
+    rawgSearch(event);
+    ajaxSearch(event);
 }
-searchBtn.on("click", ajaxSearch)
+searchBtn.on("click", multiFunction)
 
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
@@ -196,7 +216,7 @@ $(document).on("click", ".track-save-btn", function (event) {
     }
     // if favTracks contains this track already...
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
-        // ******* can add a modal here if we want 
+        // ************** can add a modal here if we want ****************************
         // logging track is already saved message to console
         console.log(track + " is already saved");
     }
@@ -238,6 +258,7 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+
     if (event.target == modalerror) {
         modalerror.style.display = "none"
     }
@@ -246,3 +267,8 @@ window.onclick = function (event) {
 function modalfunction(){
 modalerror.style.display = "block";
 }
+
+};
+
+
+

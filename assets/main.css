@@ -39,7 +39,7 @@ input {
 
 img {
     border: 1px solid rgb(200, 200, 200);
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 /* .game-img {
@@ -56,6 +56,7 @@ img {
     transition: 0.2s ease-in-out;
     padding: 5px;
     margin: 10px 0 20px 0 !important;
+    border-radius: 5px;
 }
 
 .game-save-btn:hover,
@@ -63,15 +64,16 @@ img {
     color: white;
     background: rgb(0, 132, 255);
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .game-display,
 .youtube-display {
-    border: solid white 1px;
+    border: 1px solid rgb(190, 190, 190);
     border-radius: 16px;
     text-align: center;
     padding: 15px;
+    box-shadow: 5px 5px 30px rgb(15, 15, 15);
 }
 
 .free-game-result {
@@ -130,6 +132,22 @@ ol {
     border: none;
 }
 
+/* rounded edges on dropdown menu items */
+#favorites-menu,
+#fav-games,
+#fav-tracks {
+    border-radius: 8px;
+}
+
+/* hover effect also has rounded edges in dropdown */
+#games-heading-a {
+    border-radius: 8px 8px 0 0;
+}
+
+#music-heading-a {
+    border-radius: 0 0 8px 8px;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -162,6 +180,7 @@ ol {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 16px;
     width: 80%; /* Could be more or less, depending on screen size */
     text-align: center;
   }
