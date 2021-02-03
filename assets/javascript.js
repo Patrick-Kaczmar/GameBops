@@ -93,7 +93,7 @@ $(document).on("click", ".game-save-btn", function (event) {
     
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
-
+        // *************** can add modal here *************
         // logging track is already saved message to console
         console.log(game + " is already saved");
     }
@@ -194,7 +194,7 @@ $(document).on("click", ".track-save-btn", function (event) {
     }
     // if favTracks contains this track already...
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
-
+        // ******* can add a modal here if we want 
         // logging track is already saved message to console
         console.log(track + " is already saved");
     }
