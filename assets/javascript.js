@@ -9,13 +9,13 @@ $(window).ready(function () {
     modal.style.display = "block";
 });
 // checking if any games have been saved in local storage
-if (localStorage.getItem("Favorite Games")){
+if (localStorage.getItem("Favorite Games")) {
     // clearing any existing buttons
     $('#fav-games').empty();
     // favGames array will contain items that were saved in local storage
     var favGames = JSON.parse(localStorage.getItem("Favorite Games"));
     // creating a list item for each game 
-    for (var i = 0; i < favGames.length; i++){
+    for (var i = 0; i < favGames.length; i++) {
         var g = `
         <li><a target="_blank" href="${favGames[i].href}">${favGames[i].value}</a></li>
         `
@@ -28,6 +28,23 @@ else {
 };
 
 // checking if any music has been saved in local storage
+
+if (localStorage.getItem("Favorite Tracks")) {
+    // clearing any existing buttons
+    $('#fav-tracks').empty();
+    // favTracks array will contain items that were saved in local storage
+    favTracks = JSON.parse(localStorage.getItem("Favorite Tracks"));
+    // creating a list item for each track
+    for (var i = 0; i < favTracks.length; i++) {
+        var t = `
+         <li><a target="_blank" href="${favTracks[i].href}">${favTracks[i].value}</a></li>
+         `
+        $('#fav-tracks').append(t);
+    }
+}
+else {
+    // if no local storage, favTracks is an empty array
+
 if (localStorage.getItem("Favorite Tracks")){
      // clearing any existing buttons
      $('#fav-tracks').empty();
@@ -44,6 +61,7 @@ if (localStorage.getItem("Favorite Tracks")){
  else {
      // if no local storage, favTracks is an empty array
      var favTracks = [];
+
 }
 // free-to-play API
 const settings = {
@@ -52,11 +70,39 @@ const settings = {
     "url": "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc",
     "method": "GET",
     "headers": {
-    "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
-    "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
+        "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
     }
 };
-$(".game-display").empty();
+ 
+
+function rawgSearch(event) {
+    event.preventDefault()
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rawg-video-games-database.p.rapidapi.com/games?page_size=1&search=" + userInput.val(),
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+            "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
+        }
+    };
+    $("#gameDisplay").empty();
+    $.ajax(settings).done(function (response) {
+        console.log(response.results);
+        var titles = response.results[0].name;
+        var img = response.results[0].background_image;
+        var c = `<div>
+            <h1>${titles}</h1>
+            <img src="${img}" alt="${titles}">
+            </a>
+          </div>`;
+        $("#gameDisplay").append(c);
+    })
+}
+
+$(".freeToPlay").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
@@ -73,12 +119,11 @@ $.ajax(settings).done(function (response) {
             </a>
           </div>
           `;
-         
-          var b = `
+        var b = `
           <button class="game-save-btn" value="${title}" data-url="${gameUrl}">Add to Favorites</button>
         `
-        $(".game-display").append(a);
-        $(".game-display").append(b);
+        $(".freeToPlay").append(a);
+        $(".freeToPlay").append(b);
     }
 });
 
@@ -90,6 +135,13 @@ $(document).on("click", ".game-save-btn", function (event) {
         value: $(this).val(),
         href: $(this).attr("data-url")
     }
+
+
+    if (favGames.includes(game.value) === false) {
+
+        console.log(game);
+        // removing placeholder message
+
     
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
@@ -99,6 +151,7 @@ $(document).on("click", ".game-save-btn", function (event) {
     }
     else {
         // remove placeholder message
+
         $('#init-game-message').remove();
         console.log(game);
 
@@ -107,8 +160,14 @@ $(document).on("click", ".game-save-btn", function (event) {
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
 
+
+        // adding game to the favorites list at top of page
+        var addFavGame = `
+        <li><a target="_blank" href="${game.href}">${game.value}</a></li>
+
         addFavGame = `
         <li><a href="${game.href}">${game.value}</a></li>
+
         `
         $('#fav-games').append(addFavGame);
     }
@@ -182,7 +241,11 @@ function ajaxSearch(event) {
         })
     })
 }
-searchBtn.on("click", ajaxSearch)
+function multiFunction(event){
+    rawgSearch(event);
+    ajaxSearch(event);
+}
+searchBtn.on("click",multiFunction)
 
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
