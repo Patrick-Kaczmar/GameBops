@@ -136,7 +136,6 @@ $(document).on("click", ".game-save-btn", function (event) {
         href: $(this).attr("data-url")
     }
 
-    
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
         // *************** can add modal here *************
@@ -284,4 +283,6 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+
 }}
+

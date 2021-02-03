@@ -132,14 +132,20 @@ ol {
     border: none;
 }
 
+/* rounded edges on dropdown menu items */
 #favorites-menu,
 #fav-games,
 #fav-tracks {
     border-radius: 8px;
 }
 
-#favorites-menu:hover {
-    border-radius: 8px;
+/* hover effect also has rounded edges in dropdown */
+#games-heading-a {
+    border-radius: 8px 8px 0 0;
+}
+
+#music-heading-a {
+    border-radius: 0 0 8px 8px;
 }
 
 /* The Modal (background) */
