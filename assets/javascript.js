@@ -43,6 +43,16 @@ else {
     // if no local storage, favTracks is an empty array
     var favTracks = [];
 }
+
+// Clear Favorites  click event 
+$(document).on("click", "#clear-favorites-a", function(){
+    
+    localStorage.removeItem("Favorite Games");
+    localStorage.removeItem("Favorite Tracks");
+    $('#fav-games').empty();
+    $('#fav-tracks').empty();
+});
+
 // free-to-play API
 const settings = {
     "async": true,
@@ -99,7 +109,7 @@ $.ajax(settings).done(function (response) {
           </div>
           `;
         var b = `
-          <button class="game-save-btn" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
+          <button class="game-save-btn button large" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
         `
         $(".freeToPlay").append(a);
         $(".freeToPlay").append(b);
