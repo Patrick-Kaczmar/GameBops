@@ -99,7 +99,7 @@ $.ajax(settings).done(function (response) {
           </div>
           `;
         var b = `
-          <button class="game-save-btn" value="${title}" data-url="${gameUrl}">Add to Favorites</button>
+          <button class="game-save-btn" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
         `
         $(".freeToPlay").append(a);
         $(".freeToPlay").append(b);
@@ -192,7 +192,7 @@ function ajaxSearch(event) {
                 var title = albumResponse.tracks.data[i].title;
                 var link = albumResponse.tracks.data[i].link;
                 ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
-                ol.append(`<button class="track-save-btn music-result button large" data-url="${link}" value="${title}">Add to Favorites</button>`);
+                ol.append(`<button class="track-save-btn music-result button large" data-url="${link}" value="${title}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>`);
             }
         })
     })
