@@ -206,14 +206,13 @@ function ajaxSearch(event) {
                 ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
                 ol.append(`<button class="track-save-btn music-result button large" data-url="${link}" value="${title}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>`);
             }
+
+            rawgSearch(event);
         })
     })
 };
-function multiFunction(event) {
-    rawgSearch(event);
-    ajaxSearch(event);
-}
-searchBtn.on("click", multiFunction)
+
+searchBtn.on("click", ajaxSearch)
 
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
