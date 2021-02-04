@@ -1,11 +1,8 @@
-var GameSaveBtn = $('.game-save-btn');
-// var favGames = [];
-// var favTracks = [];
 $(window).ready(function () {
     // initializing foundation js
     $(document).foundation();
     // Get the modal
-    var modal = document.getElementById("Modal");
+    var modal = document.getElementById("modal-greetings");
     modal.style.display = "block";
 });
 // checking if any games have been saved in local storage
@@ -43,6 +40,7 @@ if (localStorage.getItem("Favorite Tracks")) {
     }
 }
 
+
     if (localStorage.getItem("Favorite Tracks")) {
         // clearing any existing buttons
         $('#fav-tracks').empty();
@@ -56,9 +54,24 @@ if (localStorage.getItem("Favorite Tracks")) {
             $('#fav-tracks').append(t);
         }
     }
-    else {
-        // if no local storage, favTracks is an empty array
-        var favTracks = [];
+
+  else {
+    // if no local storage, favTracks is an empty array
+    var favTracks = [];
+  }
+// free-to-play API
+const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc",
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "375d20d071msh8cfe88476310e89p19559fjsn74b9c5579521",
+        "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com"
+    }
+};
+
+
 
     }
     // free-to-play API
@@ -100,6 +113,7 @@ if (localStorage.getItem("Favorite Tracks")) {
         })
     }
 
+
     $(".freeToPlay").empty();
     $.ajax(settings).done(function (response) {
         console.log(response);
@@ -110,6 +124,7 @@ if (localStorage.getItem("Favorite Tracks")) {
             var thumbnail = response[i].thumbnail;
             var gameUrl = response[i].game_url;
             var a = `
+
           <div class="free-game-result">
             <a target="_blank" href= "${gameUrl}">
             <h2>${title}</h2>
@@ -134,22 +149,26 @@ if (localStorage.getItem("Favorite Tracks")) {
             href: $(this).attr("data-url")
         }
 
-        // if favGames contains this track already...
-        if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
-            // *************** can add modal here *************
-            // logging track is already saved message to console
-            console.log(game + " is already saved");
-        }
-        else {
-            // remove placeholder message
 
-            $('#init-game-message').remove();
-            console.log(game);
+    // if favGames contains this track already...
+    if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
+        // *************** can add modal here *************
+        // logging track is already saved message to console
+          //console.log(game + " is already saved")//
+          modalfunction();
+         }
+
+    else {
+        // remove placeholder message
+        $('#init-game-message').remove();
+        console.log(game);
+
 
             // add chosen game to the favgames array
             favGames.push(game);
             // saving array of favorite games to local storage
             localStorage.setItem("Favorite Games", JSON.stringify(favGames));
+
 
 
             // adding game to the favorites list at top of page
@@ -158,6 +177,7 @@ if (localStorage.getItem("Favorite Tracks")) {
         `
             $('#fav-games').append(addFavGame);
         }
+
 
     });
     var searchBtn = $("#search-btn");
@@ -209,28 +229,36 @@ if (localStorage.getItem("Favorite Tracks")) {
 
                 $(".youtube-display").append(ol);
 
-                for (i = 0; i < albumResponse.tracks.data.length; i++) {
-                    var title = albumResponse.tracks.data[i].title;
-                    var link = albumResponse.tracks.data[i].link;
-                    ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
-                    ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
-                    // var b = $("<button>");
-                    // b.addClass("track-save-btn");
-                    // b.addClass("music-result");
-                    // b.val(title);
 
-                    // b.text("Add to Favorites");
-                    // saveBtn.val(title);
-                    // console.log(b);
-
-                    // ol.append(b);
-                }
-            })
+            for (i = 0; i < albumResponse.tracks.data.length; i++) {
+                var title = albumResponse.tracks.data[i].title;
+                var link = albumResponse.tracks.data[i].link;
+                ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
+                ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
+            }
         })
+    })
+};
+function multiFunction(event) {
+    rawgSearch(event);
+    ajaxSearch(event);
+}
+searchBtn.on("click", multiFunction)
+
+$(document).on("click", ".track-save-btn", function (event) {
+    event.preventDefault();
+    console.log(this);
+    // creating a track variable, assigning value and link for track
+    var track = {
+        value: $(this).val(),
+        href: $(this).attr("data-url")
     }
-    function multiFunction(event) {
-        rawgSearch(event);
-        ajaxSearch(event);
+    // if favTracks contains this track already...
+    if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
+        // ************** can add a modal here if we want ****************************
+        // logging track is already saved message to console
+        console.log(track + " is already saved");
+
     }
     searchBtn.on("click", multiFunction);
 
@@ -261,25 +289,51 @@ if (localStorage.getItem("Favorite Tracks")) {
             addFavTrack = `
         <li><a href="${track.href}">${track.value}</a></li>
         `
-            $('#fav-tracks').append(addFavTrack);
-        }
-    });
 
-    // Get the modal
-    var modal = document.getElementById("Modal");
+        $('#fav-tracks').append(addFavTrack);
+    }
+});
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+// Get the modal
+var modal = document.getElementById("modal-greetings");
+var modalerror = document.getElementById("modal-error");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var spanerror = document.getElementsByClassName("close")[1];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+spanerror.onclick = function () {
+    modalerror.style.display = "none";
+}
+
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
     }
 
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+
+    if (event.target == modalerror) {
+        modalerror.style.display = "none"
+    }
+}
+
+function modalfunction(){
+modalerror.style.display = "block";
+}
+
+};
+
+
+
 
     }
