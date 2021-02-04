@@ -74,9 +74,8 @@ function rawgSearch(event) {
         var titles = response.results[0].name;
         var img = response.results[0].background_image;
         var c = `<div>
-            <h1>${titles}</h1>
+            <h2>${titles}</h2>
             <img src="${img}" alt="${titles}">
-            </a>
           </div>`;
         $("#gameDisplay").append(c);
     })
@@ -94,13 +93,13 @@ $.ajax(settings).done(function (response) {
         var a = `
           <div class="free-game-result">
             <a target="_blank" href= "${gameUrl}">
-            <h2>${title}</h2>
+            <h3>${title}</h3>
             <img class="game-img" src="${thumbnail}" alt="${title}">
             </a>
           </div>
           `;
         var b = `
-          <button class="game-save-btn" value="${title}" data-url="${gameUrl}">Add to Favorites</button>
+          <button class="game-save-btn" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
         `
         $(".freeToPlay").append(a);
         $(".freeToPlay").append(b);
@@ -185,8 +184,8 @@ function ajaxSearch(event) {
                 }
 
             $(".youtube-display").empty()
-            $(".youtube-display").append(`<img class="music-image" src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
-            $(".youtube-display").append(`<h2>${albumResponse.title}</h2>`)
+            $(".youtube-display").append(`<img class="music-img" src="${albumResponse.cover_medium}" alt="${albumResponse.title}"/>`)
+            $(".youtube-display").append(`<h3>${albumResponse.title}</h3>`)
             var ol = $(`<ol class="music-result">`)
 
             $(".youtube-display").append(ol);
@@ -195,7 +194,7 @@ function ajaxSearch(event) {
                 var title = albumResponse.tracks.data[i].title;
                 var link = albumResponse.tracks.data[i].link;
                 ol.append(`<a target="_blank" href="${link}"><li class="track-li">${title}</li></a>`);
-                ol.append(`<button class="track-save-btn music-result" data-url="${link}" value="${title}">Add to Favorites</button>`);
+                ol.append(`<button class="track-save-btn music-result button large" data-url="${link}" value="${title}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>`);
             }
         })
     })

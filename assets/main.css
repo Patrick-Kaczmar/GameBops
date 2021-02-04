@@ -1,7 +1,7 @@
 body {
     background: rgb(53, 53, 53);
     color: white;
-    padding: 10px 15px 15px 15px;
+    padding: 0;
     font-family: 'Trebuchet MS';
     font-size: 22px;
 }
@@ -10,6 +10,11 @@ header {
     margin: 30px;
     padding: 20px;
     text-align: center;
+}
+
+h2,
+h3 {
+    color: white;
 }
 
 h5 {
@@ -52,6 +57,7 @@ img {
 }
 .game-save-btn,
 .track-save-btn {
+    background:rgb(53, 53, 53);
     color: white;
     transition: 0.2s ease-in-out;
     padding: 5px;
@@ -62,13 +68,16 @@ img {
 .game-save-btn:hover,
 .track-save-btn:hover {
     color: white;
-    background: rgb(0, 132, 255);
+    background: rgb(61, 152, 255);
+    /* background: rgb(0, 132, 255); */
     padding: 5px;
     border-radius: 5px;
 }
 
 .game-display,
-.youtube-display {
+.youtube-display,
+.freeToPlay {
+    background:rgb(53, 53, 53);
     border: 1px solid rgb(190, 190, 190);
     border-radius: 16px;
     text-align: center;
@@ -76,16 +85,31 @@ img {
     box-shadow: 5px 5px 30px rgb(15, 15, 15);
 }
 
-.free-game-result {
+
+/* .free-game-result {
+    display: flex;
+    
     padding: 15px 10px 0 10px;
-    margin: 15px 10;
-    text-align: center;
+    margin: 15px 10px;
+    
+} */
+
+.music-img {
+    margin: 10% 10% 5% 10%;
 }
 
 .music-result {
     margin: 10px;
     text-align: center;
 }
+
+a {
+    color: rgb(63, 181, 255);
+}
+/* .freeToPlay {
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 16px;
+} */
 
 ol {
     padding-left: 20%;
@@ -95,6 +119,7 @@ ol {
 .favorites-li {
     background-color: rgb(200, 200, 200);
 }
+
 .track-li {
     margin-top: 10px;
 }
@@ -103,12 +128,27 @@ ol {
     color:rgb(48, 155, 255);
 }
 
+.add {
+    border: none;
+    height: 24px;
+    width: 24px;
+    padding: 0px 2px 3px 2px;
+    margin-right: 5px;
+}
 #GameBops {
     font-size: 48px;
     letter-spacing: 5px;
     margin: 10px;
-    /* text-shadow: 1px 1px 6px rgb(185, 185, 185); */
-    text-shadow: 1px 1px 8px rgb(154, 206, 255);
+    text-shadow: 1px 1px 6px rgb(185, 185, 185);
+    /* text-shadow: 1px 1px 6px rgb(154, 206, 255); */
+}
+
+#gamebops-img {
+    border: none;
+    width: 52px;
+    height: 52px;
+    /* margin-right: 5px; */
+    margin-right: 3%;
 }
 
 #search-btn {
@@ -132,11 +172,20 @@ ol {
     border: none;
 }
 
+#dropdown {
+    background: white;
+    margin: 0 !important;
+    border-bottom: solid 1px rgb(200, 200, 200);
+    box-shadow: 3px 3px 15px  rgb(160, 160, 160);
+}
 /* rounded edges on dropdown menu items */
 #favorites-menu,
 #fav-games,
 #fav-tracks {
+    background:rgb(240, 240, 240);
     border-radius: 8px;
+    box-shadow: 2px 2px 15px rgb(175, 175, 175);
+    
 }
 
 /* hover effect also has rounded edges in dropdown */
@@ -148,6 +197,11 @@ ol {
     border-radius: 0 0 8px 8px;
 }
 
+#free-to-play {
+    flex-flow: row wrap;
+    margin: 1% 4% 4% 4%;
+    /* overflow: scroll; */
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -180,7 +234,8 @@ ol {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    border-radius: 16px;
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 5px 5px 20px rgb(15, 15, 15);
     width: 80%; /* Could be more or less, depending on screen size */
     text-align: center;
   }
