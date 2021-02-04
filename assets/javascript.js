@@ -49,6 +49,8 @@ $(document).on("click", "#clear-favorites-a", function(){
     
     localStorage.removeItem("Favorite Games");
     localStorage.removeItem("Favorite Tracks");
+    favGames = [];
+    favTracks = [];
     $('#fav-games').empty();
     $('#fav-tracks').empty();
 });
