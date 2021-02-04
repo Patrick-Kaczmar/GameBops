@@ -218,7 +218,8 @@ $(document).on("click", ".track-save-btn", function (event) {
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
         // ************** can add a modal here if we want ****************************
         // logging track is already saved message to console
-        console.log(track + " is already saved");
+        //console.log(track + " is already saved")//
+        modalfunction();
     }
     else {
         // remove placeholder message
@@ -267,8 +268,3 @@ window.onclick = function (event) {
 function modalfunction(){
 modalerror.style.display = "block";
 }
-
-};
-
-
-
