@@ -99,7 +99,7 @@ $.ajax(settings).done(function (response) {
           </div>
           `;
         var b = `
-          <button class="game-save-btn" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
+          <button class="game-save-btn button large" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
         `
         $(".freeToPlay").append(a);
         $(".freeToPlay").append(b);
