@@ -43,6 +43,16 @@ else {
     // if no local storage, favTracks is an empty array
     var favTracks = [];
 }
+
+// Clear Favorites  click event 
+$(document).on("click", "#clear-favorites-a", function(){
+    
+    localStorage.removeItem("Favorite Games");
+    localStorage.removeItem("Favorite Tracks");
+    $('#fav-games').empty();
+    $('#fav-tracks').empty();
+});
+
 // free-to-play API
 const settings = {
     "async": true,
