@@ -2,7 +2,8 @@ body {
     background: rgb(53, 53, 53);
     color: white;
     padding: 0;
-    font-family: 'Trebuchet MS';
+    /* font-family: 'Trebuchet MS'; */
+    font-family: 'Thesis' serif;
     font-size: 22px;
 }
 
