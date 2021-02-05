@@ -1,14 +1,21 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     background: rgb(53, 53, 53);
     color: white;
-    max-width: 1700px;
+    
     padding: 0;
     /* font-family: 'Trebuchet MS'; */
     font-family: 'Verdana' !important;
     font-size: 20px;
+}
+
+nav {
+    background: white;
+    border-bottom: solid 1px rgb(200, 200, 200);
+    box-shadow: 0 3px 15px -15px  rgb(160, 160, 160);
 }
 
 header {
@@ -22,11 +29,7 @@ h3,
 h4 {
     font-family: 'Ubuntu' 'sans-serif';
     color: white;
-    letter-spacing: 4px;
-}
-
-#sub-header {
-    font-family: serif;
+    letter-spacing: 3px;
 }
 
 form {
@@ -46,35 +49,41 @@ form {
 }
 
 input {
-    /* font-size: 40px !important; */
     line-height: 30px !important;
     border-radius: 8px !important;
     margin: 0 5px 0 16px !important;
 }
 
-#input.placeholder {
-    color: red !important;
-}
 img {
     border: 1px solid rgb(200, 200, 200);
     border-radius: 8px;
 }
 
-/* .game-img {
-    margin-bottom: 8px;
-} */
+a {
+    color:rgb(48, 155, 255);
+}
+
+ol {
+    padding: 2% 15%;
+}
+
+.page-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
 .game-img:hover {
     background-color: rgb(240, 240, 240);
     opacity: 0.8;
 }
+
 .game-save-btn,
 .track-save-btn {
     background:rgb(53, 53, 53);
     color: white;
     transition: 0.2s ease-in-out;
     padding: 7px;
-    margin: 10px; /* was 10px 0 20px; */
+    margin: 10px; 
     border-radius: 5px;
 }
 
@@ -82,78 +91,28 @@ img {
 .track-save-btn:hover {
     color: white;
     background: rgb(61, 152, 255);
-
-    /* background: rgb(0, 132, 255); */
-    /* padding: 5px; */
-    /* border-radius: 5px; */
 }
 
 .game-display,
+.youtube-display,
 .freeToPlay {
-    /* background:rgb(53, 53, 53); */
     border: 1px solid rgb(190, 190, 190);
     border-radius: 16px;
     text-align: center;
-    padding: 3%;
+    padding: 2%;
     box-shadow: 5px 5px 30px rgb(15, 15, 15);
 }
-.youtube-display {
-    /* background:rgb(53, 53, 53); */
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 16px;
-    text-align: center;
-    padding: 3%;
-    box-shadow: 5px 5px 30px rgb(15, 15, 15);
-}
-
-/* .freeToPlay {
-    background:rgb(53, 53, 53); 
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 16px;
-    max-height: 800px;
-    text-align: center; 
-    padding: 3%;
-    box-shadow: 5px 5px 30px rgb(15, 15, 15);
-} */
-/* .free-game-result {
-    display: flex;
-    
-    padding: 15px 10px 0 10px;
-    margin: 15px 10px;
-    
-} */
 
 .music-img {
-    margin: 5%; /* was 10% 10% 5% 10% */
+    margin: 5%; 
 }
 
 .music-result {
     margin: 10px;
-    /* text-align: center; */
-}
-
-a {
-    color: rgb(63, 181, 255);
-}
-/* .freeToPlay {
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 16px;
-} */
-
-ol {
-    padding: 2% 15%;
-    /* padding-left: 20%;
-    padding-right: 20%; */
-}
-
-.favorites-li {
-    background: white;
-    /* background-color: rgb(200, 200, 200); */
 }
 
 .track-li {
     margin-top: 10px;
-    /* text-align: left; */
 }
 
 .track:hover {
@@ -168,20 +127,27 @@ ol {
     margin-right: 5px;
 }
 
+.dropdown.menu>li.is-dropdown-submenu-parent>a::after {
+    border-color: rgb(48, 155, 255) transparent transparent;
+    margin: 0 auto;
+}
+
 #GameBops {
     font-family: Verdana;
     letter-spacing: 5px;
     margin: 10px;
-    text-shadow: 1px 1px 6px rgb(185, 185, 185);
-    /* text-shadow: 1px 1px 6px rgb(154, 206, 255); */
+    text-shadow: 1px 1px 8px rgb(185, 185, 185);
 }
 
 #gamebops-img {
     border: none;
     width: 52px;
     height: 52px;
-    /* margin-right: 5px; */
     margin-right: 3%;
+}
+
+#sub-header {
+    font-family: serif;
 }
 
 #search-btn {
@@ -204,34 +170,40 @@ ol {
 #search-icon {
     border: none;
 }
-
+/* keeping favorites bar aligned with main page content */
 #dropdown {
-    background: white;
-    margin: 0 !important;
-    border-bottom: solid 1px rgb(200, 200, 200);
-    box-shadow: 3px 3px 15px  rgb(160, 160, 160);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 5%;
+    text-align: start !important;
 }
+
 /* rounded edges on dropdown menu items */
 #favorites-menu,
 #fav-games,
 #fav-tracks {
     background:rgb(240, 240, 240);
     border-radius: 8px;
-    box-shadow: 2px 2px 15px rgb(175, 175, 175);
+    box-shadow: 3px 3px 15px rgb(175, 175, 175);
     
 }
 
+#favorites-menu-parent {
+    margin: 0;
+}
 /* hover effect also has rounded edges in dropdown */
 #games-heading-a {
     border-radius: 8px 8px 0 0;
 }
 
-/* #music-heading-a {
-    border-radius: 0 0 8px 8px;
-} */
-
 #clear-favorites-a:hover {
    color:rgb(236, 82, 82);
+}
+
+#trash-img {
+    opacity: 0.65;
+    margin-left: 35%;
+    margin-right: 0;
 }
 #free-to-play {
     flex-flow: row wrap;

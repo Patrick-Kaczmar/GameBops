@@ -25,7 +25,6 @@ else {
 };
 
 // checking if any music has been saved in local storage
-
 if (localStorage.getItem("Favorite Tracks")) {
     // clearing any existing buttons
     $('#fav-tracks').empty();
@@ -45,8 +44,8 @@ else {
 }
 
 // Clear Favorites  click event 
-$(document).on("click", "#clear-favorites-a", function(){
-    
+$(document).on("click", "#clear-favorites-a", function(event){
+    event.preventDefault();
     localStorage.removeItem("Favorite Games");
     localStorage.removeItem("Favorite Tracks");
     favGames = [];
@@ -54,6 +53,11 @@ $(document).on("click", "#clear-favorites-a", function(){
     $('#fav-games').empty();
     $('#fav-tracks').empty();
 });
+
+// click event preventing jump to top of page for a tags with href "#"
+$(document).on("click", ".fav-menu", function(event){
+    event.preventDefault();
+})
 
 // free-to-play API
 const settings = {
@@ -93,7 +97,7 @@ function rawgSearch(event) {
     })
 }
 
-$(".freeToPlay").empty();
+// $(".freeToPlay").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
@@ -226,9 +230,7 @@ $(document).on("click", ".track-save-btn", function (event) {
     }
     // if favTracks contains this track already...
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
-        // ************** can add a modal here if we want ****************************
-        // logging track is already saved message to console
-        //console.log(track + " is already saved")//
+        // modal that notifies user that track is saved already
         modalfunction();
     }
     else {
@@ -240,7 +242,7 @@ $(document).on("click", ".track-save-btn", function (event) {
         favTracks.push(track);
         // saving array of favorite tracks to local storage
         localStorage.setItem("Favorite Tracks", JSON.stringify(favTracks));
-
+        // adding track to favorites menu
         addFavTrack = `
         <li><a href="${track.href}">${track.value}</a></li>
         `
