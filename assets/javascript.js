@@ -55,9 +55,10 @@ $(document).on("click", "#clear-favorites-a", function(event){
 });
 
 // click event preventing jump to top of page for a tags with href "#"
-$(document).on("click", ".fav-menu", function(event){
+$(document).on("click", ".fav-heading", function(event){
     event.preventDefault();
 })
+
 
 // free-to-play API
 const settings = {
