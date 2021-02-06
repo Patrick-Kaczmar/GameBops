@@ -38,6 +38,7 @@ if (localStorage.getItem("Favorite Tracks")) {
         $('#fav-tracks').append(t);
     }
 }
+
 else {
     // if no local storage, favTracks is an empty array
     var favTracks = [];
@@ -72,7 +73,6 @@ const settings = {
     }
 };
 
-
 function rawgSearch(event) {
     event.preventDefault()
     var settings = {
@@ -98,16 +98,18 @@ function rawgSearch(event) {
     })
 }
 
+
 $(".freeToPlay").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
         var a = $("<ul>");
-        // storing title,thumbnail, and game url into variables
+        // storing tital,thumbnail, and game url into variables
         var title = response[i].title;
         var thumbnail = response[i].thumbnail;
         var gameUrl = response[i].game_url;
         var a = `
+
           <div class="free-game-result">
             <a target="_blank" href= "${gameUrl}">
             <h3>${title}</h3>
@@ -132,21 +134,27 @@ $(document).on("click", ".game-save-btn", function (event) {
         href: $(this).attr("data-url")
     }
 
+
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
+
         // modal telling user the track is saved already
           modalfunction();
          }
+
 
     else {
         // remove placeholder message
         $('#init-game-message').remove();
         console.log(game);
 
+
         // add chosen game to the favgames array
         favGames.push(game);
         // saving array of favorite games to local storage
         localStorage.setItem("Favorite Games", JSON.stringify(favGames));
+
+
 
         // adding game to the favorites list at top of page
         var addFavGame = `
@@ -154,6 +162,7 @@ $(document).on("click", ".game-save-btn", function (event) {
         `
         $('#fav-games').append(addFavGame);
     }
+
 
 });
 var searchBtn = $("#search-btn");
@@ -205,6 +214,7 @@ function ajaxSearch(event) {
 
             $(".youtube-display").append(ol);
 
+
             for (i = 0; i < albumResponse.tracks.data.length; i++) {
                 var title = albumResponse.tracks.data[i].title;
                 var link = albumResponse.tracks.data[i].link;
@@ -216,8 +226,13 @@ function ajaxSearch(event) {
         })
     })
 };
+function multiFunction(event) {
+    rawgSearch(event);
+    ajaxSearch(event);
+}
+searchBtn.on("click", multiFunction);
 
-searchBtn.on("click", ajaxSearch)
+// searchBtn.on("click", ajaxSearch)
 
 $(document).on("click", ".track-save-btn", function (event) {
     event.preventDefault();
@@ -229,7 +244,9 @@ $(document).on("click", ".track-save-btn", function (event) {
     }
     // if favTracks contains this track already...
     if (JSON.stringify(favTracks).includes(JSON.stringify(track.value))) {
+
         // modal that notifies user that track is saved already
+
         modalfunction();
     }
     else {
@@ -245,6 +262,7 @@ $(document).on("click", ".track-save-btn", function (event) {
         addFavTrack = `
         <li><a href="${track.href}">${track.value}</a></li>
         `
+
         $('#fav-tracks').append(addFavTrack);
     }
 });
@@ -265,6 +283,12 @@ spanerror.onclick = function () {
 }
 
 
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
@@ -276,6 +300,6 @@ window.onclick = function (event) {
     }
 }
 
-function modalfunction(){
-modalerror.style.display = "block";
+function modalfunction() {
+    modalerror.style.display = "block";
 }
