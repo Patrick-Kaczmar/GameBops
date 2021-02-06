@@ -98,7 +98,7 @@ function rawgSearch(event) {
     })
 }
 
-// $(".freeToPlay").empty();
+$(".freeToPlay").empty();
 $.ajax(settings).done(function (response) {
     console.log(response);
     for (var i = 0; i < response.length; i++) {
@@ -113,8 +113,8 @@ $.ajax(settings).done(function (response) {
             <h3>${title}</h3>
             <img class="game-img" src="${thumbnail}" alt="${title}">
             </a>
-          </div>
-          `;
+           </div>
+          `
         var b = `
           <button class="game-save-btn button large" value="${title}" data-url="${gameUrl}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>
         `
@@ -134,9 +134,7 @@ $(document).on("click", ".game-save-btn", function (event) {
 
     // if favGames contains this track already...
     if (JSON.stringify(favGames).includes(JSON.stringify(game.value))) {
-        // *************** can add modal here *************
-        // logging track is already saved message to console
-          //console.log(game + " is already saved")//
+        // modal telling user the track is saved already
           modalfunction();
          }
 
