@@ -5,22 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameBops</title>
+    <link rel="shortcut icon" type="image/png" href="assets/images/headset-favicon.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/plugins/foundation.core.min.js"
+        integrity="sha512-VjrFGrbntgayKrSj6xLEBUvBI/cokQiLTn3zOsmlX1m3LL0v8aCKCoj/Yu8tVNZBBaGRApcCQJldteGJdCl37g=="
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/plugins/foundation.sticky.min.js"
+        integrity="sha512-x6+cZFmciLZ6LzO6Wl1YUj/CKiZ+OUKnsxNs/yt4jT4BI8bXTycaXKKEQgoecbVczGl9SX8rdh1ORtbmfwszSA=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/plugins/foundation.dropdownMenu.min.js"
+        integrity="sha512-4DftXRQ+8OGe04Yem+XZJ7n8+egzzKoOeNMOJg8sunK2ewfPlMUggHZjW3Mnoz7hGyhRma+tA4acmZBoiUdnRA=="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/main.css">
     <script src="assets/javascript.js" defer></script>
 
 </head>
 
 <body>
-    <nav>
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li>
+    <nav class="sticky" data-sticky data-margin-top="0">
+        <ul id="dropdown" class="cell small-3 dropdown menu" data-dropdown-menu data-sticky-container>
+            <li class="sticky is-dropdown-submenu-parent" data-sticky data-margin-top="0">
                 <a href="#">Favorites</a>
                 <ul id="favorites-menu" class="menu">
                     <li id="games-heading"><a id="games-heading-a" href="#">Games</a>
@@ -35,18 +45,18 @@
                             <li id="init-music-message"><a href="#"><em>Saved Music</em></a></li>
                         </ul>
                     </li>
+                    <li id="clear-favorites"><a id="clear-favorites-a" href="#">Clear Favorites</a></li>
                 </ul>
             </li>
-            <!-- <li><a href="#">Random</a></li> -->
-        </ul>
+        </ul> 
     </nav>
     <header>
         <h1 id="GameBops">
-            GameBops
+            <img id="gamebops-img" src="assets/images/headset-icon-white.png" alt="G">GameBops
         </h1>
-
-        <h5 id="sub-header">Find Game Soundtracks</h5>
+        <h4 id="sub-header">Find Game Soundtracks</h4>
     </header>
+
     <!-- The Modal -->
     <div id="modal-greetings" class="modal">
 
@@ -61,26 +71,30 @@
         <div class="modal-error-content">
             <span class="close">&times;</span>
             <p>That title is already in your favorites!!</p>
+         </div>
         </div>
-    </div>
+
     <main class="grid-x grid-padding-x align-spaced">
         <form class="cell small-6">
-            <input id="input" type="text" placeholder="Search for any game...">
+            <input id="input" type="text" placeholder="Type any game...">
             <button id="search-btn"><img id="search-icon" src="assets/images/search-white-36x36.png"></button>
         </form>
     </main>
-    <section class="grid-x grid-padding-x align-spaced">
+    <section class="grid-x grid-margin-x align-center"> 
         <div id="gameDisplay" class="game-display cell small-5">
-
+            <h3 class="results-placeholder">- Game -</h3>
+            <!-- Game Info Results Display Here -->
         </div>
-        <div class="youtube-display cell small-5">
-
+        <div class="youtube-display cell small-5"> 
+            <h3 class="results-placeholder">- Soundtrack -</h3>
+            <!-- Music Search Results Display Here -->
         </div>
     </section>
-
-
-
-    <div class="freeToPlay"></div>
+    <section class="grid-x grid-padding-x align-center">
+        <div id="free-to-play" class="freeToPlay cell small-10">
+            <!-- Free Games Display Here -->
+        </div>
+    </section>
 
 
 </body>
