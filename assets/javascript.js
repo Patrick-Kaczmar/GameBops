@@ -222,7 +222,6 @@ function ajaxSearch(event) {
                 ol.append(`<button class="track-save-btn music-result button large" data-url="${link}" value="${title}"><img class="add" src="assets/images/add-icon-white-24x24.png" alt="Add to">Favorites</button>`);
             }
 
-            rawgSearch(event);
         })
     })
 };
