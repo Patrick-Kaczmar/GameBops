@@ -6,6 +6,7 @@ The goal of GameBops is to deliver a way for fans of games and music to find and
 
 ### link to Jquery - https://cdnjs.com/libraries/jquery
 ### link to Foundation - https://cdnjs.com/libraries/foundation
+### link to presentation slides - https://prezi.com/view/LiYGtscPqUUmilOnJyX0
 
 ### link to the website - https://patrick-kaczmar.github.io/GameBops/
 
